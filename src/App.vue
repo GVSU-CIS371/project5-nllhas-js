@@ -6,6 +6,9 @@
         <v-icon>{{ link.icon }}</v-icon>
         {{ link.text }}
       </v-btn>
+      <v-btn color ="red"  @click="openForm">
+        Add Product
+      </v-btn>
     </v-app-bar>
     <v-main class="bg-blue-lighten-5">
       <router-view v-slot="{ Component }">
@@ -14,15 +17,25 @@
         </transition>
       </router-view>
     </v-main>
-
     <v-footer color="primary" app>
       © 2023 My Online Store. All rights reserved.
     </v-footer>
+    <v-dialog v-model="showForm" max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Add New Product</span>
+        </v-card-title>
+        <v-card-text>
+          <AddProductForm @close="closeForm" />
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue';
+import AddProductForm from './components/AddProductForm.vue';
 
 const links = ref([
   { text: "Home", to: "/", icon: "mdi-home" },
@@ -31,4 +44,14 @@ const links = ref([
   { text: "Groceries", to: "/groceries", icon: "mdi-cart" },
   { text: "Best Seller", to: "/bestseller", icon: "mdi-cash-register" },
 ]);
+
+const showForm = ref(false);
+
+const openForm = () => {
+  showForm.value = true;
+};
+
+const closeForm = () => {
+  showForm.value = false;
+};
 </script>
