@@ -9,16 +9,15 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, computed } from "vue";
 import { useProductStore } from "../stores/ProductStore";
 import StoreItem from "./StoreItem.vue";
 import type { ProductDoc } from "../types/product";
 
 const productStore = useProductStore();
-const products = ref<ProductDoc[]>([]);
+const products = computed(() => productStore.filterByCategory("Clothing") as ProductDoc[]);
 
 onMounted(() => {
   productStore.init();
-  products.value = productStore.filterByCategory("Clothing") as ProductDoc[];
 });
 </script>

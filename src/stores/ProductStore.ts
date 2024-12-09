@@ -33,7 +33,9 @@ export const useProductStore = defineStore("ProductStore", {
         const data = docSnapshot.data() as Product;
         products.push({ id: docSnapshot.id, data });
       });
-      this.products = products;
+      console.log("Before update:", this.products);
+      this.products = [...products];
+      console.log("After update:", this.products);
     },
 
     async createProduct(newProduct: Product) {

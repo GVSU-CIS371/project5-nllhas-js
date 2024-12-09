@@ -8,17 +8,15 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useProductStore } from "../stores/ProductStore";
 import StoreItem from "./StoreItem.vue";
-import { ProductDoc } from "../types/product";
 
 const productStore = useProductStore();
-const products = ref<ProductDoc[]>([]);
+const products = computed(() => productStore.products); 
 
 onMounted(async () => {
   await productStore.init();
-  products.value = [...productStore.products]; 
 });
 </script>
 
