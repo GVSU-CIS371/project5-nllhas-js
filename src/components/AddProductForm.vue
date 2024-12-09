@@ -10,10 +10,10 @@
 
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="submitForm">
+            <v-btn color="green darken-1"  @click="submitForm">
                 Submit new product
             </v-btn>
-            <v-btn color="red darken-1" text @click="close">
+            <v-btn color="red darken-1" @click="close">
                 Exit
             </v-btn>
         </v-card-actions>

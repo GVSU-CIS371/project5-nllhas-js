@@ -15,7 +15,7 @@ import StoreItem from "./StoreItem.vue";
 import type { ProductDoc } from "../types/product";
 
 const productStore = useProductStore();
-const products = ref([]);
+const products = ref<ProductDoc[]>([]);
 
 onMounted(() => {
   productStore.init();

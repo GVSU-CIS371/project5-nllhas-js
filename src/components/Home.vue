@@ -11,9 +11,10 @@
 import { ref, onMounted } from "vue";
 import { useProductStore } from "../stores/ProductStore";
 import StoreItem from "./StoreItem.vue";
+import { ProductDoc } from "../types/product";
 
 const productStore = useProductStore();
-const products = ref([]); 
+const products = ref<ProductDoc[]>([]);
 
 onMounted(async () => {
   await productStore.init();
